@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
 import Beer from './Beer'
 
 function Beers({beers, filter}) {

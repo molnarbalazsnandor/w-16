@@ -19,11 +19,20 @@ function App() {
       });
   }, [perPage]);
 
+  /* Chrome-ban működő megoldás */
   useEffect(() => {
     sortBy === "asc"
-      ? setBeers([...beers].sort((a, b) => a.name > b.name))
-      : setBeers([...beers].sort((a, b) => a.name < b.name));
+      ? setBeers([...beers].sort((a, b) => (a.name > b.name ? -1 : 1)))
+      : setBeers([...beers].sort((a, b) => (a.name < b.name ? -1 : 1)));
   }, [sortBy]);
+
+  /*   Firefox-ban működő megoldás:
+
+useEffect(() => {
+    sortBy === "asc"
+      ? setBeers((beers) => beers.sort((a, b) => a.name > b.name))
+      : setBeers((beers) => beers.sort((a, b) => a.name < b.name));
+  }, [sortBy]); */
 
   console.log(beers);
 
