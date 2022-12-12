@@ -7,6 +7,7 @@ function App() {
   const [beers, setBeers] = useState([]);
   const [perPage, setPerPage] = useState(10);
   const [filter, setFilter] = useState("");
+  const [sortBy, setSortBy] = useState("asc");
 
   useEffect(() => {
     fetch(`https://api.punkapi.com/v2/beers?per_page=${perPage}`)
@@ -17,6 +18,12 @@ function App() {
         }, 2000);
       });
   }, [perPage]);
+
+  useEffect(() => {
+    sortBy === "asc"
+      ? setBeers([...beers].sort((a, b) => a.name > b.name))
+      : setBeers([...beers].sort((a, b) => a.name < b.name));
+  }, [sortBy]);
 
   console.log(beers);
 
@@ -29,6 +36,7 @@ function App() {
           setPerPage(event.target.value);
         }}
       />
+
       <p>filter:</p>
       <input
         type="text"
@@ -38,6 +46,15 @@ function App() {
           setFilter(event.target.value);
         }}
       />
+
+      <button
+        onClick={() => {
+          sortBy === "asc" ? setSortBy("desc") : setSortBy("asc");
+        }}
+      >
+        Sort by: {sortBy}
+      </button>
+
       {/* conditional rendering: */}
       {beers.length > 0 ? (
         <Beers beers={beers} filter={filter} />
