@@ -7,7 +7,7 @@ function App() {
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/beers")
+    fetch("/beers/b")
       .then((res) => res.json())
       .then((data) => setBeers(data));
   }, []);
