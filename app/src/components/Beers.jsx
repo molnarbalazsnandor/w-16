@@ -1,18 +1,16 @@
-import React from 'react'
-import Beer from './Beer'
+import Beer from "./Beer";
 
-function Beers({beers, filter}) {
+function Beers({beers}) {
+    
 
-  return (
-    <div>
-      {beers
-        .filter((beer)=>beer.name
-          .toLowerCase()
-        .includes(filter
-          .toLowerCase()))
-        .map((beer, i) => <Beer key={i} beerData={beer}/>)}
-      </div>
-  )
+    return (
+        <div className="beers">
+            {beers               
+                .map((beer, index) => (
+                    <Beer key={index} beerData={beer} />
+                ))}
+        </div>
+    );
 }
 
-export default Beers
+export default Beers;
