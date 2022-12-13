@@ -67,7 +67,7 @@ useEffect(() => {
           sortBy === "asc" ? setSortBy("desc") : setSortBy("asc");
         }}
       >
-        Sort by: {sortBy}
+        Sorted by: {sortBy}
       </button>
 
       {/* conditional rendering: */}
